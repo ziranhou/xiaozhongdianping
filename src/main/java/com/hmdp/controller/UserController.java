@@ -36,6 +36,9 @@ public class UserController {
      */
     @PostMapping("code")
     public Result sendCode(@RequestParam("phone") String phone, HttpSession session) {
+        // 通过 @RequestParam("phone") 注解从HTTP请求参数中获取。
+        // 前端需要在发送POST请求时提供名为"phone"的请求参数，通常是用户输入的手机号码
+        // HttpSession session 参数：由Spring框架自动注入，来源于当前的HTTP会话
         // 发送短信验证码并保存验证码
         return userService.sendCode(phone, session);
     }
