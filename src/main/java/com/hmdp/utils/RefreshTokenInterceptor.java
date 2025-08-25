@@ -7,17 +7,16 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-public class LoginInterceptor implements HandlerInterceptor {
+public class RefreshTokenInterceptor implements HandlerInterceptor {
 
-/*    private StringRedisTemplate stringRedisTemplate;
+    private StringRedisTemplate stringRedisTemplate;
 
-    public LoginInterceptor(StringRedisTemplate stringRedisTemplate) {
+    public RefreshTokenInterceptor(StringRedisTemplate stringRedisTemplate) {
         this.stringRedisTemplate = stringRedisTemplate;
-    }*/
+    }
 
 
     @Override
@@ -37,12 +36,10 @@ public class LoginInterceptor implements HandlerInterceptor {
         // 6. 放行
         return true;*/
 
-        /*// 1. 获取请求头中的token
+        // 1. 获取请求头中的token
         String token = request.getHeader("authorization");
         if (token == null || token.isEmpty()) {
-            // 4. 不存在，拦截，返回401
-            response.setStatus(401);
-            return false;
+            return true;
         }
 
         // 2. 基于token获取redis中的用户
@@ -51,29 +48,19 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         // 3.判断用户是否存在
         if (userMap.isEmpty()) {
-            // 4. 不存在，拦截，返回401
-            response.setStatus(401);
-            return false;
+            return true;
         }
 
         // 5. 将查询到的hash数据转为UserDTO对象
         UserDTO userDTO = BeanUtil.fillBeanWithMap(userMap, new UserDTO(), false);
 
-        // 5. 存在，保存用户信息到 ThreadLocal
+        // 6. 存在，保存用户信息到 ThreadLocal
         UserHolder.saveUser(userDTO);
 
-        // 刷新token有效期
+        // 7. 刷新token有效期
         stringRedisTemplate.expire(key, RedisConstants.LOGIN_USER_TTL, TimeUnit.MINUTES);
 
-        // 6. 放行*/
-
-        // 1. 判断是否需要去做拦截（判断threadlacal中是否有用户）
-        if (UserHolder.getUser() == null) {
-            // 拦截，返回401
-            response.setStatus(401);
-            return false;
-        }
-        // 有用户，放行
+        // 8. 放行
         return true;
     }
 
