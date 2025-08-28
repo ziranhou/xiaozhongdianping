@@ -13,7 +13,8 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginInterceptor implements HandlerInterceptor {
 
-/*    private StringRedisTemplate stringRedisTemplate;
+/*
+    private StringRedisTemplate stringRedisTemplate;
 
     public LoginInterceptor(StringRedisTemplate stringRedisTemplate) {
         this.stringRedisTemplate = stringRedisTemplate;
