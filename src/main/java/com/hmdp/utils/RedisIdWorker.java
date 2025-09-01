@@ -8,7 +8,7 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
 @Component
-public class RedisIDWorker {
+public class RedisIdWorker {
     // 开始时间戳
     private static final long BEGIN_TIMESTAMP = 1640995200L;
     // 序列号位数
@@ -16,7 +16,7 @@ public class RedisIDWorker {
 
     private StringRedisTemplate stringRedisTemplate;
 
-    public RedisIDWorker(StringRedisTemplate stringRedisTemplate) {
+    public RedisIdWorker(StringRedisTemplate stringRedisTemplate) {
         this.stringRedisTemplate = stringRedisTemplate;
     }
 

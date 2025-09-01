@@ -1,10 +1,9 @@
 package com.hmdp;
 
 import com.hmdp.entity.Shop;
-import com.hmdp.service.IShopService;
 import com.hmdp.service.impl.ShopServiceImpl;
 import com.hmdp.utils.CacheClient;
-import com.hmdp.utils.RedisIDWorker;
+import com.hmdp.utils.RedisIdWorker;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -27,7 +26,7 @@ class HmDianPingApplicationTests {
     private CacheClient cacheClient;
 
     @Resource
-    private RedisIDWorker redisIDWorker;
+    private RedisIdWorker redisIDWorker;
 
     @Test
     void testSaveShop() throws InterruptedException {
