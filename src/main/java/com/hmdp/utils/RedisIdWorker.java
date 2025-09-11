@@ -20,7 +20,7 @@ public class RedisIdWorker {
         this.stringRedisTemplate = stringRedisTemplate;
     }
 
-    public Long nextID(String keyPrefix){
+    public Long nextId(String keyPrefix){
         // 1. 生成时间戳
         LocalDateTime now = LocalDateTime.now();
         long nowSecond = now.toEpochSecond(ZoneOffset.UTC);

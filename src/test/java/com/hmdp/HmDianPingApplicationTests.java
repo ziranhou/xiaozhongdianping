@@ -41,7 +41,7 @@ class HmDianPingApplicationTests {
         CountDownLatch latch = new CountDownLatch(300);
         Runnable task = () -> {
             for (int i = 0; i < 100; i++) {
-                long id = redisIDWorker.nextID("order");
+                long id = redisIDWorker.nextId("order");
                 System.out.println("id = " + id);
             }
             latch.countDown();
