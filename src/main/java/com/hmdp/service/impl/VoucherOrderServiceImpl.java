@@ -43,6 +43,15 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
     @Resource
     private RedisIdWorker redisIdWorker;
 
+    /**
+     * 执行秒杀优惠券的下单操作。
+     * 该方法首先校验秒杀活动的状态（是否开始、是否结束、库存是否充足），
+     * 然后通过 Redis 分布式锁防止用户重复下单，
+     * 最终调用代理对象的 createVoucherOrder 方法完成订单创建。
+     *
+     * @param voucherId 优惠券 ID，用于查询秒杀信息和创建订单
+     * @return 返回下单结果，包含订单 ID 或失败信息
+     */
     @Override
     public Result seckillVoucher(Long voucherId) {
         // 1. 查询优惠券
